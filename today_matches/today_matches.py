@@ -40,3 +40,70 @@ class url_generator:
 
 
 
+class  getting_the_matches:
+    
+    translator=team_name_translator()
+
+
+
+    def __init__(self):
+
+
+        # self.url_provider=url_generator()
+
+        # self.translator=team_name_translator()
+
+        # self.file_decriptor_handler=fd_handler()
+        ...
+
+    @classmethod
+    def get_matches(cls,eventloop):
+
+
+        getting_the_fdhandler_module()
+
+
+        # request call
+        html = requests.get(url_generator.get_url()).text
+
+
+
+
+
+        
+        soup = BeautifulSoup(html, "html.parser")
+
+
+
+        x =soup.find(class_="2968 matchCard matchesList")
+
+        if x is not None:
+
+            teams=zip(x.find_all(class_="teams teamA"),x.find_all(class_="teams teamB"),x.find_all(class_="time"))
+
+
+
+            matches=""
+
+
+            for teama,teamb,date in teams:
+                match=(f"{cls.translator.translate(teama.text.strip('\n'))} vs {cls.translator.translate(teamb.text.strip('\n'))} at {(date.text.strip('\n'))}")
+
+                matches+=match+'\n'
+
+                # creating a normal fd for each match 
+                fd=fd_handler.new_fd(match,date.text,0)
+
+
+                eventloop.register_fd(fd,select.EPOLLIN)
+            # 1 means that there is matches today 
+            return matches,1
+
+
+
+        elif x is None:
+
+            matches="no matches today in the premier league "
+
+            # zero means that there is no matches today 
+            return matches,0
