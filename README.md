@@ -40,15 +40,11 @@ containing the filed of the twilo sandbox and your phone number
 see .env.template for more details 
 
 
-5. limitations:
+## limitations:
 this program will run only on linux machines because it uses the timerfd syscalls of linux 
 
 
 
 
-Add a license file (e.g., `LICENSE`) or choose a license and add it here.
 
-## Contact
-If you want help configuring an actual WhatsApp provider integration or to have me add the README to the repository, tell me which provider and your preferred entry-point script name and I can:
-- Update the README with provider-specific steps, and/or
-- Commit the README.md to the repository for you.
+
