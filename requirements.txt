@@ -1,0 +1,5 @@
+requests
+beautifulsoup4
+twilio
+deep-translator
+python-dotenv
